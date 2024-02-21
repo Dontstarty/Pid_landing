@@ -49,7 +49,7 @@ if __name__ == '__main__':
     def read_by_id(path):
         by_id = {}
         with open(path, 'r') as ymlfile:
-            root = yaml.load(ymlfile)
+            root = yaml.safe_load(ymlfile)
             for node in root["crazyflies"]:
                 id = int(node["id"])
                 by_id[id] = node
@@ -70,7 +70,7 @@ if __name__ == '__main__':
     enabled = read_by_id(os.path.join(
         args.configpath, "crazyflies.yaml")).keys()
     with open(os.path.join(args.configpath, "crazyflieTypes.yaml"), 'r') as ymlfile:
-        data = yaml.load(ymlfile)
+        data = yaml.safe_load(ymlfile)
         cfTypes = data["crazyflieTypes"]
 
     # compute absolute pixel coordinates from the initial positions
